@@ -1,0 +1,44 @@
+services:
+  fhir:
+    build: .
+    image: smart-on-fhir-poc
+    command: npx tsx packages/fhir-server/server.ts
+    environment:
+      FHIR_DB_PATH: /data/fhir.db
+    volumes:
+      - fhir-data:/data
+    ports:
+      - "3000:3000"
+
+  auth:
+    image: smart-on-fhir-poc
+    command: npx tsx packages/auth-server/server.ts
+    ports:
+      - "4000:4000"
+
+  client:
+    image: smart-on-fhir-poc
+    command: npx tsx packages/client-app/server.ts
+    environment:
+      # Server-side calls inside the compose network use service names.
+      # Browser-facing URLs stay localhost (mapped ports).
+      FHIR_BASE_URL: http://fhir:3000
+      AUTH_BASE_URL: http://auth:4000
+    ports:
+      - "5000:5000"
+    depends_on:
+      - fhir
+      - auth
+
+  adminer:
+    image: adminer:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - fhir-data:/data:ro
+      - ./docker/adminer-plugins:/var/www/html/plugins-enabled:ro
+    environment:
+      ADMINER_DEFAULT_DRIVER: sqlite
+
+volumes:
+  fhir-data:

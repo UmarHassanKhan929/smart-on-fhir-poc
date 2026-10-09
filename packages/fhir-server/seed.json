@@ -1,0 +1,47 @@
+{
+  "patients": [
+    {
+      "resourceType": "Patient",
+      "id": "001",
+      "name": [{ "family": "Khan", "given": ["Bacha"] }],
+      "gender": "female",
+      "birthDate": "1990-04-12"
+    },
+    {
+      "resourceType": "Patient",
+      "id": "002",
+      "name": [{ "family": "Hassan", "given": ["Umar"] }],
+      "gender": "male",
+      "birthDate": "1985-09-30"
+    }
+  ],
+  "observations": [
+    {
+      "resourceType": "Observation",
+      "id": "obs-1",
+      "status": "final",
+      "code": { "coding": [{ "system": "http://loinc.org", "code": "29463-7", "display": "Body Weight" }] },
+      "subject": { "reference": "Patient/001" },
+      "valueQuantity": { "value": 62.5, "unit": "kg" },
+      "effectiveDateTime": "2026-10-01T09:00:00Z"
+    },
+    {
+      "resourceType": "Observation",
+      "id": "obs-2",
+      "status": "final",
+      "code": { "coding": [{ "system": "http://loinc.org", "code": "8480-6", "display": "Systolic BP" }] },
+      "subject": { "reference": "Patient/001" },
+      "valueQuantity": { "value": 118, "unit": "mmHg" },
+      "effectiveDateTime": "2026-10-01T09:05:00Z"
+    },
+    {
+      "resourceType": "Observation",
+      "id": "obs-3",
+      "status": "final",
+      "code": { "coding": [{ "system": "http://loinc.org", "code": "29463-7", "display": "Body Weight" }] },
+      "subject": { "reference": "Patient/002" },
+      "valueQuantity": { "value": 80.1, "unit": "kg" },
+      "effectiveDateTime": "2026-10-02T10:00:00Z"
+    }
+  ]
+}

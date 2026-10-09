@@ -1,0 +1,10 @@
+h2 🏥 Memorial Hospital — Sign in
+p App #[b #{clientId}] is requesting: #[code= scope]
+form(method="POST" action="/authorize/decision")
+  input(name="username" placeholder="bacha or umar" required)
+  input(name="password" type="password" placeholder="password" required)
+  input(type="hidden" name="scope" value=scope)
+  input(type="hidden" name="state" value=state)
+  input(type="hidden" name="client_id" value=clientId)
+  input(type="hidden" name="redirect_uri" value=redirectUri)
+  button(type="submit") Approve & Sign In

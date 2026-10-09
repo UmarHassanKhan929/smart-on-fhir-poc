@@ -1,0 +1,9 @@
+h1 💗 MyHealth App
+h2 Patient: #{patientName}
+p DOB: #{dob} · Gender: #{gender}
+h3 Observations
+ul
+  each obs in observations
+    li #{obs.label}: #[b #{obs.value}] #[small (#{obs.time})]
+h3 Token response
+pre= tokenJson
